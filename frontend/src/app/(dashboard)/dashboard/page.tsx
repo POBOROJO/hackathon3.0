@@ -171,10 +171,30 @@ const DashboardPage = () => {
                         onChange={(e) => setQuestion(e.target.value)}
                       />
                       <div className="text-sm text-muted-foreground">
-                        {selectedFile && !useFullKnowledge && "Question will be answered based on selected document only"}
-                        {!selectedFile && useFullKnowledge && "Question will be answered using IPC/BNS knowledge base"}
-                        {selectedFile && useFullKnowledge && "Question will be answered using both document and IPC/BNS knowledge"}
-                        {!selectedFile && !useFullKnowledge && "Please select a document or enable IPC/BNS knowledge base"}
+                        {!selectedFile && !useFullKnowledge && (
+                          <div className="flex items-center text-amber-600 font-medium">
+                            <AlertTriangle className="w-4 h-4 mr-2" />
+                            Please select a document or enable IPC/BNS knowledge base
+                          </div>
+                        )}
+                        {selectedFile && !useFullKnowledge && (
+                          <div className="flex items-center text-blue-600 font-medium">
+                            <FileCheck className="w-4 h-4 mr-2" />
+                            Question will be answered based on selected document only
+                          </div>
+                        )}
+                        {!selectedFile && useFullKnowledge && (
+                          <div className="flex items-center text-purple-600 font-medium">
+                            <BookOpen className="w-4 h-4 mr-2" />
+                            Question will be answered using IPC/BNS knowledge base
+                          </div>
+                        )}
+                        {selectedFile && useFullKnowledge && (
+                          <div className="flex items-center text-green-600 font-medium">
+                            <Bot className="w-4 h-4 mr-2" />
+                            Question will be answered using both document and IPC/BNS knowledge
+                          </div>
+                        )}
                       </div>
                       <Button
                         className="w-full"
