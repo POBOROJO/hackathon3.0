@@ -150,28 +150,48 @@ const DashboardPage = () => {
                   <CardTitle>Legal Q&A System</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="flex items-center space-x-2">
-                    <Switch
-                      checked={useFullKnowledge}
-                      onCheckedChange={setUseFullKnowledge}
-                    />
-                    <Label>Include IPC/BNS knowledge base</Label>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label>Selected Document: {selectedFile ? uploadedFiles.find(f => f.id === selectedFile)?.name : 'None'}</Label>
-                    <Textarea
-                      placeholder="Ask a question about your legal documents..."
-                      value={question}
-                      onChange={(e) => setQuestion(e.target.value)}
-                    />
-                    <Button 
-                      className="w-full"
-                      disabled={!selectedFile && !useFullKnowledge}
-                    >
-                      Ask Question
-                      <Bot className="w-4 h-4 ml-2" />
-                    </Button>
+                  <div className="space-y-4">
+                    <div className="flex items-center space-x-2">
+                      <Switch
+                        checked={useFullKnowledge}
+                        onCheckedChange={setUseFullKnowledge}
+                      />
+                      <Label>Include IPC/BNS knowledge base</Label>
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label>
+                        Selected Document: {selectedFile
+                          ? uploadedFiles.find(f => f.id === selectedFile)?.name
+                          : 'None'}
+                      </Label>
+                      <Textarea
+                        placeholder="Ask a question about your uploaded documents or legal knowledge..."
+                        value={question}
+                        onChange={(e) => setQuestion(e.target.value)}
+                      />
+                      <div className="text-sm text-muted-foreground">
+                        {selectedFile && !useFullKnowledge && "Question will be answered based on selected document only"}
+                        {!selectedFile && useFullKnowledge && "Question will be answered using IPC/BNS knowledge base"}
+                        {selectedFile && useFullKnowledge && "Question will be answered using both document and IPC/BNS knowledge"}
+                        {!selectedFile && !useFullKnowledge && "Please select a document or enable IPC/BNS knowledge base"}
+                      </div>
+                      <Button
+                        className="w-full"
+                        disabled={!selectedFile && !useFullKnowledge}  // Button enabled if either condition is true
+                        onClick={() => {
+                          // Here you would implement the logic to handle the question
+                          console.log({
+                            question,
+                            selectedFile: selectedFile ? uploadedFiles.find(f => f.id === selectedFile) : null,
+                            useFullKnowledge
+                          });
+                        }}
+                      >
+                        Ask Question
+                        <Bot className="w-4 h-4 ml-2" />
+                      </Button>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
