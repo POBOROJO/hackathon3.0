@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<h1 align="start">
+  Themis - Your AI-Powered Legal Assistant
+</h1>
 
-## Getting Started
+<img width="1280" alt="Themis Thumbnail" src="">
 
-First, run the development server:
+## Introduction
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Themis is a modern, AI-driven web application designed to assist legal professionals in automating document review, extracting key insights, and enabling efficient legal research. It leverages Natural Language Processing (NLP), Retrieval-Augmented Generation (RAG), and secure document management to enhance legal workflows.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 1. Document Upload & Management
+- Upload legal documents in various formats (PDF, DOCX)
+- Smart categorization and tagging system
+- Built-in version control functionality
 
-## Learn More
+### 2. Automated Document Review
+- Key information extraction (names, dates, clauses)
+- Inconsistency detection
+- Automatic sensitive data redaction
 
-To learn more about Next.js, take a look at the following resources:
+### 3. Legal Case Law Summarization
+- Automated case law summary generation
+- Citation analysis and reference tracking
+- Key precedent identification
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4. Legal Insights & Analytics
+- Historical legal data trend analysis
+- Contract risk assessment tools
+- Performance metrics visualization
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 5. AI-Powered Q&A System
+- Document-based query processing
+- Integration with IPC and BNS databases
+- PineconeDB vector search implementation
+- Toggle between document-only and full knowledge base
 
-## Deploy on Vercel
+### 6. Document Drafting Assistance
+- Template library for legal documents
+- Context-aware clause suggestions
+- Smart drafting recommendations
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Tech Stack
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Next.js**: For building the React-based website.
+- **TailwindCSS**: For styling with utility-first CSS.
+- **Shadcn UI**: For UI components.
+- **Magic UI**: For UI components.
+- **Clerk**: For user authentication.
+
+## Quick Start
+
+### Prerequisites
+
+Make sure that you have installed
+
+- Node.js
+- Git
+- npm / yarn / pnpm / bun
+
+1. Clone this repository:
+
+   ```bash
+   git clone 
+   cd hackathon3.0
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Setup env variables:
+
+   ```bash
+    # app
+    NEXT_PUBLIC_URL=http://localhost:3000
+    NEXT_PUBLIC_DOMAIN=localhost:3000
+
+    # clerk
+    CLERK_SECRET_KEY=
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+    NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+    NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+    NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
+    NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
+   ```
+
+4. Run the development server:
+   ```bash
+   npm run dev
+   ```
+5. Open your browser and navigate to http://localhost:3000 to see the website in action.
+
