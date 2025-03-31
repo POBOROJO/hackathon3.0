@@ -102,7 +102,8 @@ const setupRAG = async () => {
   // Initialize Language Model for chat interactions
   const llm = new ChatGoogleGenerativeAI({
     apiKey: process.env.GOOGLE_API_KEY,
-    model: "gemini-1.5-flash",
+    // model: "gemini-2.5-pro-exp-03-25",
+    model:"gemini-2.0-flash-thinking-exp-01-21",
     temperature: 0.7,
   });
 
