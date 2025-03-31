@@ -56,7 +56,7 @@ ${extractedText}
 
     // Send prompt and extracted text to Gemini AI model
     const response = await genAI.models.generateContent({
-      model: "gemini-2.0-flash",
+      model: "gemini-2.5-pro-exp-03-25",
       contents: prompt,
     });
 
