@@ -197,14 +197,14 @@ const HomePage = () => {
                 key={card.title}
                 className={cn(
                   "flex flex-col w-full border-neutral-700",
-                  card.title === "Unlimited Saas" && "border-2 border-primary"
+                  card.title === "Professional" && "border-2 border-primary"
                 )}
               >
                 <CardHeader className="border-b border-border">
                   <span>{card.title}</span>
                   <CardTitle
                     className={cn(
-                      card.title !== "Unlimited Saas" && "text-muted-foreground"
+                      card.title !== "Professional" && "text-muted-foreground"
                     )}
                   >
                     {card.price}
