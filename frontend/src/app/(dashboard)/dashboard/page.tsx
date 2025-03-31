@@ -398,38 +398,6 @@ const DashboardPage = () => {
               </Card>
             </TabsContent>
 
-            <TabsContent value="review" className="mt-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Document Review</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-4">
-                      <h3 className="text-lg font-semibold">Key Information</h3>
-                      <div className="p-4 border rounded-lg">
-                        <p className="text-muted-foreground">
-                          {selectedFile
-                            ? "Analyzing document..."
-                            : "Select a document to view extracted information"}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="space-y-4">
-                      <h3 className="text-lg font-semibold">Inconsistencies</h3>
-                      <div className="p-4 border rounded-lg">
-                        <p className="text-muted-foreground">
-                          {selectedFile
-                            ? "Checking for inconsistencies..."
-                            : "No inconsistencies detected"}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
 
             <TabsContent value="insights" className="mt-6">
               <Card>
