@@ -286,25 +286,42 @@ const DashboardPage = () => {
                           </div>
                         )}
                       </div>
-                      <Button
-                        className="w-full"
-                        disabled={
-                          (!selectedFile && !useFullKnowledge) || isLoading
-                        }
-                        onClick={handleAskQuestion}
-                      >
-                        {isLoading ? (
-                          <div className="flex items-center gap-2">
-                            <div className="animate-spin">🌀</div>
-                            Analyzing...
-                          </div>
-                        ) : (
-                          <>
-                            Ask Question
-                            <Bot className="w-4 h-4 ml-2" />
-                          </>
-                        )}
-                      </Button>
+                      <div className="flex gap-2">
+                        <Button
+                          className="flex-1"
+                          disabled={
+                            (!selectedFile && !useFullKnowledge) || isLoading
+                          }
+                          onClick={handleAskQuestion}
+                        >
+                          {isLoading ? (
+                            <div className="flex items-center gap-2">
+                              <div className="animate-spin">🌀</div>
+                              Analyzing...
+                            </div>
+                          ) : (
+                            <>
+                              Ask Question
+                              <Bot className="w-4 h-4 ml-2" />
+                            </>
+                          )}
+                        </Button>
+
+                        <Button
+                          variant="outline"
+                          onClick={() => {
+                            setQuestion("");
+                            setAnswer("");
+                            setError(null);
+                            toast.info("Conversation cleared");
+                          }}
+                          disabled={
+                            isLoading || (!question && !answer && !error)
+                          }
+                        >
+                          Clear
+                        </Button>
+                      </div>
                     </div>
 
                     {error && (
