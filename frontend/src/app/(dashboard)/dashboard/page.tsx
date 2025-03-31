@@ -19,15 +19,24 @@ import {
   File,
   Trash2,
 } from "lucide-react";
+import { Toaster } from "@/components/ui/sonner";
+import { toast } from "sonner";
+import { askLegalQuestion } from "@/lib/api/rag";
+import { analyzeDocument } from "@/lib/api/document-review";
 
 interface UploadedFile {
   id: string;
   name: string;
   type: string;
   size: number;
+  fileObj: File; // Add this
 }
 
 const DashboardPage = () => {
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [answer, setAnswer] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [useFullKnowledge, setUseFullKnowledge] = useState(false);
   const [question, setQuestion] = useState("");
   const [analysis, setAnalysis] = useState<any>(null);
@@ -40,6 +49,7 @@ const DashboardPage = () => {
       name: file.name,
       type: file.type,
       size: file.size,
+      fileObj: file, // Store the actual File object
     }));
     setUploadedFiles((prev) => [...prev, ...newFiles]);
   }, []);
@@ -96,6 +106,58 @@ const DashboardPage = () => {
       )}
     </div>
   );
+
+  const handleDocumentReview = async () => {
+    if (!selectedFile) {
+      toast.error("Please select a document first");
+      return;
+    }
+
+    setIsAnalyzing(true);
+    try {
+      const fileData = uploadedFiles.find((f) => f.id === selectedFile);
+      if (!fileData) return;
+
+      toast.info("Analyzing document...");
+      const result = await analyzeDocument(fileData.fileObj);
+      setAnalysis(result.aiResponse);
+      toast.success("Document analysis complete");
+    } catch (error) {
+      toast.error("Failed to analyze document");
+      console.error(error);
+    } finally {
+      setIsAnalyzing(false);
+    }
+  };
+
+  const handleAskQuestion = async () => {
+    setError(null);
+    setAnswer("");
+
+    if (!question.trim() || (!selectedFile && !useFullKnowledge)) {
+      toast.error("Please enter a question and select at least one source");
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      const response = await askLegalQuestion(question, {
+        documentId: selectedFile,
+        useKnowledgeBase: useFullKnowledge,
+      });
+
+      setAnswer(response.answer);
+      toast.success("Answer generated successfully");
+    } catch (error) {
+      setError(
+        error instanceof Error ? error.message : "Unknown error occurred"
+      );
+      toast.error("Failed to get answer");
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="flex h-[calc(100vh-4rem)]">
@@ -187,6 +249,12 @@ const DashboardPage = () => {
                         placeholder="Ask a question about your uploaded documents or legal knowledge..."
                         value={question}
                         onChange={(e) => setQuestion(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" && !e.shiftKey) {
+                            e.preventDefault();
+                            handleAskQuestion();
+                          }
+                        }}
                       />
                       <div className="text-sm text-muted-foreground">
                         {!selectedFile && !useFullKnowledge && (
@@ -220,21 +288,93 @@ const DashboardPage = () => {
                       </div>
                       <Button
                         className="w-full"
-                        disabled={!selectedFile && !useFullKnowledge} // Button enabled if either condition is true
-                        onClick={() => {
-                          // Here you would implement the logic to handle the question
-                          console.log({
-                            question,
-                            selectedFile: selectedFile
-                              ? uploadedFiles.find((f) => f.id === selectedFile)
-                              : null,
-                            useFullKnowledge,
-                          });
-                        }}
+                        disabled={
+                          (!selectedFile && !useFullKnowledge) || isLoading
+                        }
+                        onClick={handleAskQuestion}
                       >
-                        Ask Question
-                        <Bot className="w-4 h-4 ml-2" />
+                        {isLoading ? (
+                          <div className="flex items-center gap-2">
+                            <div className="animate-spin">🌀</div>
+                            Analyzing...
+                          </div>
+                        ) : (
+                          <>
+                            Ask Question
+                            <Bot className="w-4 h-4 ml-2" />
+                          </>
+                        )}
                       </Button>
+                    </div>
+
+                    {error && (
+                      <div className="mt-4 p-4 bg-destructive/10 text-destructive rounded-lg border border-destructive/20">
+                        <div className="flex items-center gap-2 mb-2">
+                          <AlertTriangle className="w-5 h-5" />
+                          <h3 className="font-semibold">
+                            Error Processing Request
+                          </h3>
+                        </div>
+                        <p>{error}</p>
+                      </div>
+                    )}
+                    {answer && (
+                      <div className="mt-4 p-4 bg-muted rounded-lg border">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Bot className="w-5 h-5 text-primary" />
+                          <h3 className="font-semibold">
+                            Legal Assistant Response
+                          </h3>
+                        </div>
+                        <div className="whitespace-pre-wrap text-justify">
+                          {answer}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="review" className="mt-6">
+              <Card>
+                <CardHeader>
+                  <div className="flex justify-between items-center">
+                    <CardTitle>Document Review</CardTitle>
+                    <Button
+                      onClick={handleDocumentReview}
+                      disabled={!selectedFile || isAnalyzing}
+                    >
+                      {isAnalyzing ? "Analyzing..." : "Analyze Document"}
+                    </Button>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-4">
+                      <h3 className="text-lg font-semibold">Key Information</h3>
+                      <div className="p-4 border rounded-lg min-h-48">
+                        {analysis ? (
+                          <div className="whitespace-pre-wrap">{analysis}</div>
+                        ) : (
+                          <p className="text-muted-foreground">
+                            {selectedFile
+                              ? "Click 'Analyze Document' to review"
+                              : "Select a document to review"}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <h3 className="text-lg font-semibold">Inconsistencies</h3>
+                      <div className="p-4 border rounded-lg min-h-48">
+                        <p className="text-muted-foreground">
+                          {analysis
+                            ? "Inconsistency detection coming soon"
+                            : "No analysis performed yet"}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </CardContent>

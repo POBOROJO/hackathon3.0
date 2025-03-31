@@ -8,6 +8,11 @@ const nextConfig = {
     ],
   },
   reactStrictMode: false,
+  api: {
+    bodyParser: {
+      sizeLimit: '10mb', // Adjust based on your needs
+    },
+  },
 };
 
 export default nextConfig;

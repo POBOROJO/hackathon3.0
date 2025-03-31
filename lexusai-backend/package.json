@@ -2,9 +2,10 @@
   "name": "backend-server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/app.js"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,7 @@
     "express": "^4.21.2",
     "multer": "^1.4.5-lts.2",
     "mysql2": "^3.14.0",
+    "nodemon": "^3.1.9",
     "pdf-parse": "^1.1.1",
     "sequelize": "^6.37.7"
   }

@@ -38,5 +38,5 @@ export const SITE_CONFIG: Metadata = {
       },
     ],
   },
-  metadataBase: new URL("https://Lexus AI-app.vercel.app"),
+  metadataBase: new URL("https://LexusAI-app.vercel.app"),
 };
