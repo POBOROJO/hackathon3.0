@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lexus AI Symbol</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #121212;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .symbol-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .outer-circle {
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: rotate 12s linear infinite;
+        }
+        
+        .middle-circle {
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            border: 2px solid rgba(212, 175, 55, 0.5);
+            box-shadow: inset 0 0 15px rgba(212, 175, 55, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .inner-circle {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .inner-circle::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 30%, rgba(0, 0, 0, 0.8) 100%);
+        }
+        
+        .gavel {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(-30deg);
+            z-index: 2;
+        }
+        
+        .gavel-head {
+            width: 50px;
+            height: 25px;
+            background-color: #D4AF37;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+        
+        .gavel-handle {
+            width: 10px;
+            height: 70px;
+            background-color: #D4AF37;
+            border-radius: 5px;
+            margin-top: -5px;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+        
+        .circuit-lines {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .circuit-line {
+            position: absolute;
+            background-color: rgba(212, 175, 55, 0.3);
+            border-radius: 4px;
+        }
+        
+        .line-1 {
+            width: 80px;
+            height: 2px;
+            top: 70px;
+            left: 30px;
+            transform: rotate(45deg);
+        }
+        
+        .line-2 {
+            width: 60px;
+            height: 2px;
+            bottom: 80px;
+            right: 40px;
+            transform: rotate(-30deg);
+        }
+        
+        .line-3 {
+            width: 70px;
+            height: 2px;
+            bottom: 50px;
+            left: 50px;
+            transform: rotate(20deg);
+        }
+        
+        .line-4 {
+            width: 50px;
+            height: 2px;
+            top: 60px;
+            right: 60px;
+            transform: rotate(-60deg);
+        }
+        
+        .dot {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: #D4AF37;
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(212, 175, 55, 0.8);
+        }
+        
+        .dot-1 { top: 68px; left: 28px; }
+        .dot-2 { bottom: 78px; right: 38px; }
+        .dot-3 { bottom: 48px; left: 48px; }
+        .dot-4 { top: 58px; right: 58px; }
+        
+        .pulse {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: rgba(212, 175, 55, 0.05);
+            z-index: 0;
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        .text {
+            position: absolute;
+            bottom: -60px;
+            text-align: center;
+            color: #D4AF37;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        
+        .main-text {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .sub-text {
+            font-size: 12px;
+            opacity: 0.7;
+            letter-spacing: 3px;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(0.92); opacity: 0.7; }
+            50% { transform: scale(1); opacity: 0.3; }
+            100% { transform: scale(0.92); opacity: 0.7; }
+        }
+        
+        /* Animated dots on the circuit lines */
+        .moving-dot {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: #D4AF37;
+            border-radius: 50%;
+            opacity: 0;
+            animation: moveDot 3s linear infinite;
+        }
+        
+        .moving-dot-1 {
+            top: 70px;
+            left: 30px;
+            animation-delay: 0s;
+        }
+        
+        .moving-dot-2 {
+            bottom: 80px;
+            right: 40px;
+            animation-delay: 0.8s;
+        }
+        
+        .moving-dot-3 {
+            bottom: 50px;
+            left: 50px;
+            animation-delay: 1.6s;
+        }
+        
+        .moving-dot-4 {
+            top: 60px;
+            right: 60px;
+            animation-delay: 2.4s;
+        }
+        
+        @keyframes moveDot {
+            0% { opacity: 0; transform: translate(0, 0); }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; transform: translate(80px, 80px) rotate(45deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="symbol-container">
+        <div class="outer-circle"></div>
+        <div class="middle-circle"></div>
+        <div class="inner-circle">
+            <div class="pulse"></div>
+            <div class="circuit-lines">
+                <div class="circuit-line line-1"></div>
+                <div class="circuit-line line-2"></div>
+                <div class="circuit-line line-3"></div>
+                <div class="circuit-line line-4"></div>
+                <div class="dot dot-1"></div>
+                <div class="dot dot-2"></div>
+                <div class="dot dot-3"></div>
+                <div class="dot dot-4"></div>
+                <div class="moving-dot moving-dot-1"></div>
+                <div class="moving-dot moving-dot-2"></div>
+                <div class="moving-dot moving-dot-3"></div>
+                <div class="moving-dot moving-dot-4"></div>
+            </div>
+            <div class="gavel">
+                <div class="gavel-head"></div>
+                <div class="gavel-handle"></div>
+            </div>
+        </div>
+        <div class="text">
+            <div class="main-text">LEXUS AI</div>
+            <div class="sub-text">LEGAL INTELLIGENCE</div>
+        </div>
+    </div>
+</body>
+</html>

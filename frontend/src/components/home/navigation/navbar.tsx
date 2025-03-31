@@ -14,7 +14,7 @@ const Navbar = async () => {
           <div className="flex items-start">
             <Link href="/" className="flex items-center gap-2">
               <Icons.law className="w-8 h-8" />
-              <span className="text-lg font-medium">Themis</span>
+              <span className="text-lg font-medium">Lexus AI</span>
             </Link>
           </div>
           <nav className="hidden md:block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">

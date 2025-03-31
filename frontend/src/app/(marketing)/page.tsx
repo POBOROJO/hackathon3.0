@@ -45,7 +45,7 @@ const HomePage = () => {
                   height={24}
                   className="w-4 h-4"
                 />
-                Introducing Themis AI
+                Introducing Lexus AI AI
                 <ChevronRight className="w-4 h-4" />
               </span>
             </button>
@@ -107,7 +107,7 @@ const HomePage = () => {
               How It Works
             </h2>
             <p className="text-muted-foreground mt-6">
-              Step-by-step guide to how Themis AI works.
+              Step-by-step guide to how Lexus AI AI works.
             </p>
           </div>
         </Container>
@@ -144,8 +144,8 @@ const HomePage = () => {
               Discover our powerful features
             </h2>
             <p className="text-muted-foreground mt-6">
-              Themis offers a range of features to help you make the most of your
-              data.
+              Lexus AI offers a range of features to help you make the most of
+              your data.
             </p>
           </div>
         </Container>
@@ -247,8 +247,8 @@ const HomePage = () => {
               What people are saying
             </h2>
             <p className="text-muted-foreground mt-6">
-              See how Themis empowers businesses of all sizes. Here&apos;s what
-              real people are saying on Twitter
+              See how Lexus AI empowers businesses of all sizes. Here&apos;s
+              what real people are saying on Twitter
             </p>
           </div>
         </Container>
@@ -323,13 +323,13 @@ const HomePage = () => {
         <Container>
           <LampContainer>
             <div className="flex flex-col items-center justify-center relative w-full text-center">
-                <h2 className="text-4xl lg:text-5xl xl:text-6xl lg:!leading-snug font-semibold mt-8">
+              <h2 className="text-4xl lg:text-5xl xl:text-6xl lg:!leading-snug font-semibold mt-8">
                 From Document to Insight <br /> Faster Than Ever
-                </h2>
-                <p className="text-muted-foreground mt-6 max-w-md mx-auto">
-                Transform complex legal documents into actionable insights with Themis AI's
-                powerful analysis and intuitive interface
-                </p>
+              </h2>
+              <p className="text-muted-foreground mt-6 max-w-md mx-auto">
+                Transform complex legal documents into actionable insights with
+                Lexus AI AI's powerful analysis and intuitive interface
+              </p>
               <Button variant="white" className="mt-6" asChild>
                 <Link href="/sign-in">
                   Get started for free

@@ -4,7 +4,7 @@ export const perks = [
   {
     icon: Icons.auth,
     title: "Sign Up",
-    info: "Create your free account to get started with Themis.",
+    info: "Create your free account to get started with Lexus AI.",
   },
   {
     icon: Icons.upload,
@@ -64,7 +64,7 @@ export const pricingCards = [
       "Basic document analysis",
       "Limited Q&A functionality",
       "Basic case law summarization",
-      "Single user account"
+      "Single user account",
     ],
     priceId: "",
   },
@@ -81,7 +81,7 @@ export const pricingCards = [
       "Full Q&A with IPC database access",
       "Comprehensive case summarization",
       "Up to 5 team members",
-      "Document drafting assistance"
+      "Document drafting assistance",
     ],
     priceId: "price_1OYxkqFj9oKEERu1KfJGWxgN",
   },
@@ -99,7 +99,7 @@ export const pricingCards = [
       "Full integration with legal databases",
       "Unlimited team members",
       "Priority 24/7 support",
-      "Custom workflow automation"
+      "Custom workflow automation",
     ],
     priceId: "price_1OYxkqFj9oKEERu1NbKUxXxN",
   },
@@ -136,7 +136,7 @@ export const reviews = [
   {
     name: "Sarah M.",
     username: "@sarahlaw",
-    body: "Themis has transformed how I handle client documents. The automated review feature saved me countless hours on my last case.",
+    body: "Lexus AI has transformed how I handle client documents. The automated review feature saved me countless hours on my last case.",
   },
   {
     name: "Daniel Chen",
@@ -146,12 +146,12 @@ export const reviews = [
   {
     name: "Priya Sharma",
     username: "@priyalawyer",
-    body: "As a solo practitioner, Themis gives me capabilities that usually only big firms have. Document analysis is spot-on.",
+    body: "As a solo practitioner, Lexus AI gives me capabilities that usually only big firms have. Document analysis is spot-on.",
   },
   {
     name: "Robert Wilson",
     username: "@rwilson",
-    body: "Our firm's efficiency increased by 30% after implementing Themis. The Q&A feature with IPC database access is invaluable.",
+    body: "Our firm's efficiency increased by 30% after implementing Lexus AI. The Q&A feature with IPC database access is invaluable.",
   },
   {
     name: "Maya Johnson",
@@ -161,6 +161,6 @@ export const reviews = [
   {
     name: "Thomas Rivera",
     username: "@tom_legal",
-    body: "I was skeptical about AI for legal work, but Themis changed my mind. The document generation is precise and time-saving.",
+    body: "I was skeptical about AI for legal work, but Lexus AI changed my mind. The document generation is precise and time-saving.",
   },
 ];
