@@ -55,7 +55,7 @@ export const pricingCards = [
   {
     title: "Basic",
     description: "For individual legal professionals",
-    price: "Free",
+    price: "$5",
     duration: "",
     highlight: "Core legal tools",
     buttonText: "Start for free",
@@ -71,7 +71,7 @@ export const pricingCards = [
   {
     title: "Professional",
     description: "For small legal practices",
-    price: "$20",
+    price: "$10",
     duration: "month",
     highlight: "Enhanced legal toolkit",
     buttonText: "Upgrade to Pro",
@@ -88,7 +88,7 @@ export const pricingCards = [
   {
     title: "Enterprise",
     description: "For law firms and legal departments",
-    price: "$100",
+    price: "$20",
     duration: "month",
     highlight: "Complete legal solution",
     buttonText: "Contact Sales",
