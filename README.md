@@ -33,7 +33,7 @@ Themis is a modern, AI-driven web application designed to assist legal professio
 ### 5. AI-Powered Q&A System
 - Document-based query processing
 - Integration with IPC and BNS databases
-- PineconeDB vector search implementation
+- FAISS vector search implementation
 - Toggle between document-only and full knowledge base
 
 ### 6. Document Drafting Assistance
